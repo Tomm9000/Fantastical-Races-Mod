@@ -22,12 +22,6 @@ public class RaceManager {
                 .orElse(null);
     }
 
-    public static void applyRaceAttributes(PlayerEntity player, Race race) {
-        for (EntityAttributeModifier modifier : race.getAttributeModifiers()) {
-            player.getAttributeInstance(EntityAttribute.CUSTOM_MAX_HEALTH).
-        }
-    }
-
     public static Race getRaceByName(String name) {
         for (Race race : races) {
             if (race.getName().equals(name)) {

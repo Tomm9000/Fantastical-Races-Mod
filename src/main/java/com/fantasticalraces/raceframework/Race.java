@@ -1,7 +1,6 @@
 package com.fantasticalraces.raceframework;
 
 import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
@@ -28,3 +27,5 @@ public class Race {
         return customAttributes;
     }
 }
+
+

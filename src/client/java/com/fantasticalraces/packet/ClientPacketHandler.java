@@ -4,7 +4,6 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.util.Identifier;
 
 public class ClientPacketHandler {
-    //public static final Identifier PACKET_ID = new Identifier("fantasticalraces", "race_selection");
 
     public static void init(){
         System.out.println("Client-side packet handler registered for race selection.");

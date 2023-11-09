@@ -10,6 +10,5 @@ public class ModAttributes {
 
     public static void registerCustomAttributes() {
         // Register your custom attributes
-        EntityAttributes.put(CUSTOM_MAX_HEALTH);
     }
 }

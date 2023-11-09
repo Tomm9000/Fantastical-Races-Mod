@@ -22,10 +22,9 @@ public class FantasicalRaces implements ModInitializer {
 		CustomPackets.register();
 
 		HumanRace humanRace = new HumanRace();
-		RaceManager.registerRace(new HumanRace());
+		RaceManager.registerRace(humanRace);
 
 		DeathlessOneRace deathlessOneRace = new DeathlessOneRace();
-		RaceManager.registerRace(new DeathlessOneRace());
-
+		RaceManager.registerRace(deathlessOneRace);
 	}
 }

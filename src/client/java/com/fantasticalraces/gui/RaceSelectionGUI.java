@@ -5,39 +5,50 @@ import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.*;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
-import com.fantasticalraces.raceframework.Race;
-import com.fantasticalraces.raceframework.RaceManager;
+import org.jetbrains.annotations.NotNull;
+
+import javax.management.loading.MLet;
 
 
 public class RaceSelectionGUI extends LightweightGuiDescription {
     private static ServerPlayerEntity player;
-    private final WGridPanel contentPanel;
+//    private final WGridPanel contentPanel;
 
     public RaceSelectionGUI(ServerPlayerEntity player){
+        System.out.println("test");
         RaceSelectionGUI.player = player;
 
         WGridPanel root = new WGridPanel();
         setRootPanel(root);
-        root.setSize(200, 150); // Set the size of the menu
+        root.setSize(200, 150);
 
-        // Create the main content panel for buttons
-        contentPanel = new WGridPanel();
-        root.add(contentPanel, 0, 6, 9, 2); // Position and size of the button panel
+        WButton humanButton = createRaceButton("Human", 4, -5, 5, 1, player);
+        humanButton.setOnClick(() -> SendMessageInChat(player, "Human"));
+        root.add(humanButton, 1, 1);
 
-        // Create buttons for each raceName
-        createRaceButton("Human", 4, -5, 5, 1, player);
-        createRaceButton("Deathless One", 4, -3, 5, 1, player);
+
+        WButton deathlessOneButton = createRaceButton("Deathless One", 4, -3, 5, 1, player);
+        deathlessOneButton.setOnClick(() -> SendMessageInChat(player, "Deathless one"));
+        root.add(deathlessOneButton, 1, 3);
+
     }
 
-    private void createRaceButton(String race, int x, int y, int width, int height, ServerPlayerEntity player) {
+    private @NotNull WButton createRaceButton(String race, int x, int y, int width, int height, ServerPlayerEntity player) {
         WButton raceButton = new WButton();
         raceButton.setLabel(Text.of("Select " + race + " Race"));
         raceButton.setOnClick(() -> onRaceButtonClicked(race, player));
 
-        contentPanel.add(raceButton, x, y, width, height);
+        return raceButton;
+    }
+
+    private void SendMessageInChat(PlayerEntity player, String race){
+        player.sendMessage(Text.of("I chose " + race));
+
+        MinecraftClient.getInstance().setScreen(null);
     }
 
     private void onRaceButtonClicked(String raceName, ServerPlayerEntity player) {
@@ -49,6 +60,5 @@ public class RaceSelectionGUI extends LightweightGuiDescription {
         RaceSelectionPacket.sendToServer(player, raceName);
 
         MinecraftClient.getInstance().setScreen(null);
-
     }
 }
