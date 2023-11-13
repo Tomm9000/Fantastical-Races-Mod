@@ -5,17 +5,34 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 
-public class RaceSelectionPacket {
-    private final String selectedRace;
+import java.util.HashMap;
+import java.util.function.Consumer;
 
-    public RaceSelectionPacket(String selectedRace) {
-        this.selectedRace = selectedRace;
+public class RaceSelectionPacket {
+    private final String _selectedRace;
+    private static String selectedRace;
+    private static ServerPlayerEntity serverPlayer;
+
+    {
+        serverPlayer = serverPlayerMap.get(this);
+    }
+
+    private static final HashMap<ServerPlayerEntity, RaceSelectionPacket> playerRaceMap = new HashMap<>();
+    private static final HashMap<RaceSelectionPacket, ServerPlayerEntity> serverPlayerMap = new HashMap<>();
+
+    public RaceSelectionPacket(String _selectedRaceName) {
+        this._selectedRace = _selectedRaceName;
+        System.out.println(_selectedRace);
+
     }
     public static void sendToServer(ServerPlayerEntity player, String selectedRace){
+        RaceSelectionPacket.selectedRace = selectedRace;
         RaceSelectionPacket packet = new RaceSelectionPacket(selectedRace);
         PacketByteBuf buf = PacketByteBufs.create();
         packet.toBuffer(packet, buf);
         ServerPlayNetworking.send(player, CustomPackets.RACE_SELECTION, buf);
+        playerRaceMap.put(player, packet);
+        serverPlayerMap.put(packet, player);
     }
 
     public static RaceSelectionPacket fromBuffer(PacketByteBuf buf){
@@ -31,10 +48,14 @@ public class RaceSelectionPacket {
     }
 
     public static void toBuffer(RaceSelectionPacket packet, PacketByteBuf buf){
-        buf.writeString(packet.selectedRace);
+        buf.writeString(packet._selectedRace);
     }
 
-    public String getSelectedRace(){
+    public static String getSelectedRace(){
         return selectedRace;
+    }
+
+    public static ServerPlayerEntity getPlayer(){
+        return serverPlayer;
     }
 }

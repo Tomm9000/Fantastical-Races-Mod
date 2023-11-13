@@ -12,12 +12,11 @@ import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
 
 import javax.management.loading.MLet;
+import java.util.function.Consumer;
 
 
 public class RaceSelectionGUI extends LightweightGuiDescription {
     private static ServerPlayerEntity player;
-//    private final WGridPanel contentPanel;
-
     public RaceSelectionGUI(ServerPlayerEntity player){
         System.out.println("test");
         RaceSelectionGUI.player = player;
@@ -27,12 +26,10 @@ public class RaceSelectionGUI extends LightweightGuiDescription {
         root.setSize(200, 150);
 
         WButton humanButton = createRaceButton("Human", 4, -5, 5, 1, player);
-        humanButton.setOnClick(() -> SendMessageInChat(player, "Human"));
         root.add(humanButton, 1, 1);
 
 
         WButton deathlessOneButton = createRaceButton("Deathless One", 4, -3, 5, 1, player);
-        deathlessOneButton.setOnClick(() -> SendMessageInChat(player, "Deathless one"));
         root.add(deathlessOneButton, 1, 3);
 
     }
@@ -53,7 +50,7 @@ public class RaceSelectionGUI extends LightweightGuiDescription {
 
     private void onRaceButtonClicked(String raceName, ServerPlayerEntity player) {
         System.out.println("Race selected: " + raceName);
-
+        SendMessageInChat(player, raceName);
         PacketByteBuf buf = PacketByteBufs.create();
         RaceSelectionPacket.toBuffer(new RaceSelectionPacket(raceName), buf);
 
@@ -61,4 +58,6 @@ public class RaceSelectionGUI extends LightweightGuiDescription {
 
         MinecraftClient.getInstance().setScreen(null);
     }
+
+
 }

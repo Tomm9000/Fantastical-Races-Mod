@@ -13,8 +13,9 @@ public class CustomPackets {
         ServerPlayNetworking.registerGlobalReceiver(RACE_SELECTION, ((server, player, handler, buf, responseSender) -> {
 
             RaceSelectionPacket packet = RaceSelectionPacket.fromBuffer(buf);
-
             String selectedRace = packet.getSelectedRace();
+
+
 
             System.out.println("Selected Race: " + selectedRace);
 

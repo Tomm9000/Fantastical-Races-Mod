@@ -1,7 +1,11 @@
 package com.fantasticalraces.raceframework;
 
+import com.fantasticalraces.packet.RaceSelectionPacket;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -25,6 +29,19 @@ public class Race {
 
     public List<EntityAttributeModifier> getAttributeModifiers(){
         return customAttributes;
+    }
+
+    // !TODO find way to change it so it change the base value instead of add
+    public static void CustomBaseHealth(float health){
+        if (RaceSelectionPacket.getPlayer() == null){
+            System.err.println("Error: Player is null in CustomBaseHealth method.");
+            return;
+        }
+        RaceSelectionPacket.getPlayer().getAttributeInstance(
+                EntityAttributes.GENERIC_MAX_HEALTH).addPersistentModifier(
+                        new EntityAttributeModifier(
+                                "Test", health, EntityAttributeModifier.Operation.ADDITION)
+        );
     }
 }
 
