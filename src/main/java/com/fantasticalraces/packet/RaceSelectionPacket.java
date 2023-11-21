@@ -13,10 +13,6 @@ public class RaceSelectionPacket {
     private static String selectedRace;
     private static ServerPlayerEntity serverPlayer;
 
-    {
-        serverPlayer = serverPlayerMap.get(this);
-    }
-
     private static final HashMap<ServerPlayerEntity, RaceSelectionPacket> playerRaceMap = new HashMap<>();
     private static final HashMap<RaceSelectionPacket, ServerPlayerEntity> serverPlayerMap = new HashMap<>();
 

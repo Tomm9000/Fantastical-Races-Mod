@@ -1,6 +1,7 @@
 package com.fantasticalraces.gui;
 
 import com.fantasticalraces.packet.RaceSelectionPacket;
+import com.fantasticalraces.raceframework.races.DeathlessOneRace;
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.*;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
@@ -55,8 +56,20 @@ public class RaceSelectionGUI extends LightweightGuiDescription {
         RaceSelectionPacket.toBuffer(new RaceSelectionPacket(raceName), buf);
 
         RaceSelectionPacket.sendToServer(player, raceName);
+        getRaceAttributes(raceName, player);
 
         MinecraftClient.getInstance().setScreen(null);
+    }
+
+    private void getRaceAttributes(String raceName, ServerPlayerEntity player){
+        switch (raceName){
+            case "Deathless One":
+                DeathlessOneRace.changeHealth(player);
+                player.sendMessage(Text.of("Health should change"));
+                break;
+            default:
+                break;
+        }
     }
 
 

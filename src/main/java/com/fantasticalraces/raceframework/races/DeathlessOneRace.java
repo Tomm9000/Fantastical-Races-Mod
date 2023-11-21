@@ -4,7 +4,6 @@ import com.fantasticalraces.packet.RaceSelectionPacket;
 import com.fantasticalraces.raceframework.Race;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
-import org.apache.logging.log4j.core.jmx.Server;
 
 import java.util.*;
 
@@ -15,7 +14,8 @@ public class DeathlessOneRace extends Race {
         super("The Deathless Ones", new Identifier("fantasticalraces", "deathless_ones"), new ArrayList<>());
     }
 
-    public static void changeHealth(){
-        CustomBaseHealth(deathlessHealthModifier);
+    public static void changeHealth(ServerPlayerEntity player){
+        CustomBaseHealth(deathlessHealthModifier, player);
+
     }
 }

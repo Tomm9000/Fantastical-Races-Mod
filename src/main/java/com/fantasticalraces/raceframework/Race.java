@@ -32,15 +32,9 @@ public class Race {
     }
 
     // !TODO find way to change it so it change the base value instead of add
-    public static void CustomBaseHealth(float health){
-        if (RaceSelectionPacket.getPlayer() == null){
-            System.err.println("Error: Player is null in CustomBaseHealth method.");
-            return;
-        }
-        RaceSelectionPacket.getPlayer().getAttributeInstance(
-                EntityAttributes.GENERIC_MAX_HEALTH).addPersistentModifier(
-                        new EntityAttributeModifier(
-                                "Test", health, EntityAttributeModifier.Operation.ADDITION)
+    public static void CustomBaseHealth(float health, ServerPlayerEntity player){
+        player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).addPersistentModifier(
+                new EntityAttributeModifier("MaxHealth", health, EntityAttributeModifier.Operation.ADDITION)
         );
     }
 }
