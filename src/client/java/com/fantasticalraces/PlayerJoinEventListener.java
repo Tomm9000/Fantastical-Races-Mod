@@ -1,5 +1,4 @@
 package com.fantasticalraces;
-import com.fantasticalraces.Data.PlayerData;
 import com.fantasticalraces.gui.RaceSelectionGUI;
 import com.fantasticalraces.gui.RaceSelectionScreen;
 import com.fantasticalraces.packet.RaceSelectionPacket;
@@ -7,15 +6,14 @@ import net.fabricmc.fabric.api.event.client.ClientTickCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 
-import java.util.HashMap;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class PlayerJoinEventListener{
     private static final Set<ServerPlayerEntity> joinedPlayers = ConcurrentHashMap.newKeySet();
 
-    private static final HashMap<ServerPlayerEntity, PlayerData> playerDataMap = new HashMap<>();
     private static boolean screenSet = false;
     public static void init(){
         ServerPlayConnectionEvents.INIT.register((handler, server) -> {
@@ -23,6 +21,9 @@ public class PlayerJoinEventListener{
             if (!joinedPlayers.contains(player)){
                 handlePlayerJoin(player);
                 joinedPlayers.add(player);
+            }
+            else if(joinedPlayers.contains(player)){
+                player.sendMessage(Text.of("i already chose " + OnPlayerJoinBack()));
             }
         });
     }
@@ -37,7 +38,9 @@ public class PlayerJoinEventListener{
                 screenSet = true;
             }
         });
-        PlayerData playerData = new PlayerData();
-        playerDataMap.put(player, playerData);
+    }
+
+    private static String OnPlayerJoinBack(){
+        return RaceSelectionPacket.getSelectedRace();
     }
 }

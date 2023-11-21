@@ -16,7 +16,6 @@ public class DeathlessOneRace extends Race {
     }
 
     public static void changeHealth(){
-        System.out.println("Cyum");
         CustomBaseHealth(deathlessHealthModifier);
     }
 }

@@ -1,6 +1,5 @@
 package com.fantasticalraces.packet;
 
-import com.fantasticalraces.raceframework.races.DeathlessOneRace;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.server.network.ServerPlayerEntity;
 

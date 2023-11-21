@@ -33,6 +33,7 @@ public class RaceSelectionPacket {
         ServerPlayNetworking.send(player, CustomPackets.RACE_SELECTION, buf);
         playerRaceMap.put(player, packet);
         serverPlayerMap.put(packet, player);
+
     }
 
     public static RaceSelectionPacket fromBuffer(PacketByteBuf buf){
