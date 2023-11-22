@@ -32,11 +32,6 @@ public class Race {
     }
 
     // !TODO find way to change it so it change the base value instead of add
-    public static void CustomBaseHealth(float health, ServerPlayerEntity player){
-        player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).addPersistentModifier(
-                new EntityAttributeModifier("MaxHealth", health, EntityAttributeModifier.Operation.ADDITION)
-        );
-    }
 }
 
 

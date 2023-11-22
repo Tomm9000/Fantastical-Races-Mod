@@ -22,6 +22,8 @@ public class FantasicalRacesClient implements ClientModInitializer {
 		ClientPacketHandler.init(RaceSelectionPacket.getPlayer());
 
 
+
+
 		keyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
 				"Open Race Menu",
 				InputUtil.Type.KEYSYM,

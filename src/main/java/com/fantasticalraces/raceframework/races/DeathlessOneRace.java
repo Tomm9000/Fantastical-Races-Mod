@@ -2,6 +2,7 @@ package com.fantasticalraces.raceframework.races;
 
 import com.fantasticalraces.packet.RaceSelectionPacket;
 import com.fantasticalraces.raceframework.Race;
+import com.fantasticalraces.raceframework.customraceattributes.CustomHealth;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 
@@ -15,7 +16,7 @@ public class DeathlessOneRace extends Race {
     }
 
     public static void changeHealth(ServerPlayerEntity player){
-        CustomBaseHealth(deathlessHealthModifier, player);
+        CustomHealth.setCustomBaseHealth(player, deathlessHealthModifier);
 
     }
 }
