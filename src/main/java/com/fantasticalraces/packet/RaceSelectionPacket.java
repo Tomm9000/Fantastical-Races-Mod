@@ -6,7 +6,6 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.HashMap;
-import java.util.function.Consumer;
 
 public class RaceSelectionPacket {
     private final String _selectedRace;
@@ -25,7 +24,7 @@ public class RaceSelectionPacket {
         RaceSelectionPacket.selectedRace = selectedRace;
         RaceSelectionPacket packet = new RaceSelectionPacket(selectedRace);
         PacketByteBuf buf = PacketByteBufs.create();
-        packet.toBuffer(packet, buf);
+        toBuffer(packet, buf);
         ServerPlayNetworking.send(player, CustomPackets.RACE_SELECTION, buf);
         playerRaceMap.put(player, packet);
         serverPlayerMap.put(packet, player);

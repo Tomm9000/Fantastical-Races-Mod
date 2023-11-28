@@ -1,10 +1,5 @@
 package com.fantasticalraces.raceframework;
 
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Identifier;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,20 +9,4 @@ public class RaceManager {
     public static void registerRace(Race race){ races.add(race); }
 
     public List<Race> getRaces(){ return races; }
-
-    public Race getRaceId(Identifier id){
-        return  races.stream()
-                .filter(race -> race.getId().equals(id))
-                .findFirst()
-                .orElse(null);
-    }
-
-    public static Race getRaceByName(String name) {
-        for (Race race : races) {
-            if (race.getName().equals(name)) {
-                return race;
-            }
-        }
-        return null; // Race not found
-    }
 }

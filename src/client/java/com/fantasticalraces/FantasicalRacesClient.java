@@ -11,18 +11,11 @@ import org.lwjgl.glfw.GLFW;
 public class FantasicalRacesClient implements ClientModInitializer {
 	public static KeyBinding keyBinding;
 
-
-
 	@Override
 	public void onInitializeClient() {
 
-
-
 		PlayerJoinEventListener.init();
 		ClientPacketHandler.init(RaceSelectionPacket.getPlayer());
-
-
-
 
 		keyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
 				"Open Race Menu",
@@ -31,8 +24,4 @@ public class FantasicalRacesClient implements ClientModInitializer {
 				"Fantastical Races"
 		));
 	}
-
-
-
-
 }

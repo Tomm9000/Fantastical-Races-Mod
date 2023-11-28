@@ -13,7 +13,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class PlayerJoinEventListener{
     private static final Set<ServerPlayerEntity> joinedPlayers = ConcurrentHashMap.newKeySet();
-
     private static boolean screenSet = false;
     public static void init(){
         ServerPlayConnectionEvents.INIT.register((handler, server) -> {
@@ -27,8 +26,6 @@ public class PlayerJoinEventListener{
             }
         });
     }
-
-
     private static void handlePlayerJoin(ServerPlayerEntity player){
 
         ClientTickCallback.EVENT.register(client -> {
@@ -39,7 +36,6 @@ public class PlayerJoinEventListener{
             }
         });
     }
-
     private static String OnPlayerJoinBack(){
         return RaceSelectionPacket.getSelectedRace();
     }

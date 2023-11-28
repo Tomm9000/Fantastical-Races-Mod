@@ -3,7 +3,8 @@ package com.fantasticalraces.gui;
 import com.fantasticalraces.packet.RaceSelectionPacket;
 import com.fantasticalraces.raceframework.races.DeathlessOneRace;
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
-import io.github.cottonmc.cotton.gui.widget.*;
+import io.github.cottonmc.cotton.gui.widget.WButton;
+import io.github.cottonmc.cotton.gui.widget.WGridPanel;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
@@ -12,15 +13,10 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
 
-import javax.management.loading.MLet;
-import java.util.function.Consumer;
-
 
 public class RaceSelectionGUI extends LightweightGuiDescription {
-    private static ServerPlayerEntity player;
     public RaceSelectionGUI(ServerPlayerEntity player){
         System.out.println("test");
-        RaceSelectionGUI.player = player;
 
         WGridPanel root = new WGridPanel();
         setRootPanel(root);
@@ -71,6 +67,4 @@ public class RaceSelectionGUI extends LightweightGuiDescription {
                 break;
         }
     }
-
-
 }
